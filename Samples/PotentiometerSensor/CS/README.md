@@ -5,7 +5,7 @@ and control an LED based on the knob position.
 
 ## Parts needed
 - [1 LED](http://www.digikey.com/product-detail/en/C5SMF-RJS-CT0W0BB1/C5SMF-RJS-CT0W0BB1-ND/2341832)
-- [1 330 &#x2126; resistor](http://www.digikey.com/product-detail/en/CFR-25JB-52-330R/330QBK-ND/1636){:target="_blank"}
+- [1 330 &#x2126; resistor](http://www.digikey.com/product-detail/en/CFR-25JB-52-330R/330QBK-ND/1636)
 - ADC
     - Raspberry Pi 2 or 3
         - [1 MCP3002 10-bit ADC](http://www.digikey.com/product-detail/en/MCP3002-I%2FP/MCP3002-I%2FP-ND/319412) or [1 MCP3208 12-bit ADC](http://www.digikey.com/product-search/en?KeyWords=mcp3208%20ci%2Fp&WT.z_header=search_go)
@@ -151,7 +151,7 @@ The code here performs two main tasks:
 
 Let's start by digging into the initializations. The first thing we initialize is the GPIO LED pin in **InitGPIO()**.
 
-``` C#
+```csharp
 private void InitGpio()
 {
 	var gpio = GpioController.GetDefault();
@@ -178,7 +178,7 @@ private void InitGpio()
 
 Next, we initialize the SPI bus. This allows the RPi2 or RPi3 to communicate with the ADC to read in potentiometer positions.
 
-``` C#
+```csharp
 private async Task InitSPI()
 {
 	try
@@ -211,7 +211,7 @@ private async Task InitSPI()
 
 After the initializations are complete, we create a periodic timer to read data every 100mS.
 
-``` C#
+```csharp
 private async void InitAll()
 {
 	// ...
@@ -225,7 +225,7 @@ private async void InitAll()
 
 This timer calls the **Timer_Tick()** function. Which starts by reading from the ADC:
 
-``` C#
+```csharp
 public void ReadADC()
 {
 	byte[] readBuffer = new byte[3]; /* Buffer to hold read data*/
@@ -263,7 +263,7 @@ public void ReadADC()
 
 Next, we control the LED based on the ADC result
 
-``` C#
+```csharp
 /* Turn on/off the LED depending on the potentiometer position    */
 private void LightLED()
 {

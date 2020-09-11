@@ -2,7 +2,7 @@
 
 We'll create a simple app that allows communication between a desktop and an IoT device over a serial interface.
 
-This is a headed sample.  To better understand what headed mode is and how to configure your device to be headed, follow the instructions [here](/Docs/HeadlessMode).
+This is a headed sample.  To better understand what headed mode is and how to configure your device to be headed, follow the instructions [here](https://docs.microsoft.com/en-us/windows/iot-core/learn-about-hardware/headlessmode).
 
 ### Load the project in Visual Studio
 
@@ -35,11 +35,11 @@ Make the following connections:
 
 *Note: Leave the power wire of the USB-to-TTL cable unconnected.*
 
-<img src="../../../Resources/images/SerialSample/SiLabs-UART.png">
+[UART](../../../Resources/images/SerialSample/SiLabs-UART.png)
 
 #### <a name="RPi2_UART"></a>On-board UART (Rasperry Pi2)
 
-The Rasperry Pi 2 or 3 has one on-board UART. See the [Raspberry Pi 2 Pin Mappings page](/Samples/PinMappingsRPi2) for more details on the GPIO pins. 
+The Rasperry Pi 2 or 3 has one on-board UART. See the [Raspberry Pi 2 Pin Mappings page](https://docs.microsoft.com/en-us/windows/iot-core/learn-about-hardware/pinmappings/pinmappingsrpi) for more details on the GPIO pins. 
 
 * UART0 uses GPIO pins 6 (GND), 8 (TX) and 10 (RX). 
 
@@ -52,7 +52,7 @@ Make the following connections:
 
 *Note: Leave the power wire of the USB-to-TTL cable unconnected.*
 
-<img src="../../../Resources/images/SerialSample/RPi2_UART.png">
+[Raspberry Pi 2 UART](../../../Resources/images/SerialSample/RPi2_UART.png)
 
 #### On-Board UART (DragonBoard 410c)
 
@@ -96,13 +96,11 @@ Leave the power pin of the USB-to-TTL cable unconnected. It is not needed.
 
 Below is an image of our USB-to-TTL module connected to a USB port in our RPi2 or RPi3. The GND, TX, and RX pins of the module are connected to the GND, RX, TX wires of the USB-to-TTL cable that is connected to our PC.
 
-<img src="../../../Resources/images/SerialSample/CP2102_Connections_500.png">
+[CP 2102 Connections](../../../Resources/images/SerialSample/CP2102_Connections_500.png)
 
 ### Deploy and Launch the SerialSample App
 
-Now that our PC and RPi2, RPi3 or MBM are connected, let's setup and deploy the app. If you are not familiar with how to set the target device and target architecture in Visual Studio see [this section](/Samples/HelloWorld.htm#deploy-the-app-to-your-windows-iot-core-device) for details.
-
-You can find the source code for this sample by downloading a zip of all of our samples [here](https://github.com/Microsoft/Windows-iotcore-samples/archive/master.zip).
+Now that our PC and RPi2, RPi3 or MBM are connected, let's setup and deploy the app.
 
 1. Navigate to the SerialSample source project. 
 
@@ -114,7 +112,7 @@ You can find the source code for this sample by downloading a zip of all of our 
 
 5. Open the PC copy of the SerialSample app in VS Instance B.
 
-6. In VS Instance A, [configure the app for deployment to your RPi2 or RPi3 or MBM device](/Samples/HelloWorld.htm#deploy-the-app-to-your-windows-iot-core-device))
+6. In VS Instance A, configure the app for deployment to your RPi2 or RPi3 or MBM device.
 	
 	*For RPi2 or RPi3, set the target device to 'Remote Machine' and target architecture to 'ARM'
 	
@@ -130,7 +128,7 @@ You can find the source code for this sample by downloading a zip of all of our 
 
 When the SerialSample app is launched on the PC, a window will open with the user interface similar to the screenshot shown below. When launched on the RPi2 or RPi3 and MBM, the SerialSample will display the user interface shown below on the entire screen.
 
-<img src="../../../Resources/images/SerialSample/SerialSampleRunningPC.PNG">
+[Serial Sample on PC](../../../Resources/images/SerialSample/SerialSampleRunningPC.PNG)
 
 #### Selecting a Serial Device
 
@@ -152,7 +150,7 @@ Select and connect to a serial device on the PC and RPi2 or RPi3 or MBM by doing
 
 The app will attempt to connect and configure the selected serial device. When the app has successfully connected to the attached serial device it will display the configuration of the serial device. By default, the app configures the serial device for 9600 Baud, eight data bits, no parity bits and one stop bit (no handshaking).
 
-<img src="../../../Resources/images/SerialSample/SerialSampleRunningPC_ConnectDevice.PNG">
+[Connect device](../../../Resources/images/SerialSample/SerialSampleRunningPC_ConnectDevice.PNG)
 
 #### Sending and Receiving Data
 
@@ -166,7 +164,7 @@ To send data from one device to the other connected device do the following:
 
 The app on the transmitting device will display the sent message and "bytes written successfully!" in the status text box in the bottom of the app display.
 
-<img src="../../../Resources/images/SerialSample/SendMessageB.PNG">
+[Send message](../../../Resources/images/SerialSample/SendMessageB.PNG)
 
 The device that is receiving the message will automatically display the text in the 'Read Data:' window.
 
@@ -205,7 +203,7 @@ You can add this by opening the **Package.appxmanifest** file in an XML editor (
 
 This sample app enumerates all serial devices connected to the device and displays the list in the **ListBox** ConnectDevices. The following code connects and configure the selected device ID and creates a **SerialDevice** object. 
 
-``` C#
+```csharp
 private async void comPortInput_Click(object sender, RoutedEventArgs e)
 {
     var selection = ConnectDevices.SelectedItems; // Get selected items from ListBox
@@ -245,7 +243,7 @@ Due to differences in handling concurrent tasks, the implementations of **Listen
 
 * C# allows awaiting **ReadAsync()**. All we do is keep reading the serial port in an infinite loop interrupted only when an exception is thrown (triggered by the cancellation token).
 
-``` C#
+```csharp
 
 private async void Listen()
 {
@@ -344,7 +342,7 @@ Concurrency::task<void> MainPage::ReadAsync(Concurrency::cancellation_token canc
 
 When the bytes are ready to be sent, we write asynchronously to the **OutputStream** of the **SerialDevice** object using the **DataWriter** object.
 
-``` C#
+```csharp
 private async void sendTextButton_Click(object sender, RoutedEventArgs e)
 {	
     // ...
@@ -381,7 +379,7 @@ private async Task WriteAsync()
 
 You can cancel the read operation by using **CancellationToken** on the Task. Initialize the **CancellationToken** object and pass that as an argument to the read task.
 
-``` C#
+```csharp
 
 private async void comPortInput_Click(object sender, RoutedEventArgs e)
 {
@@ -432,7 +430,7 @@ When closing the connection with the device, we cancel all pending I/O operation
 
 In this sample, we proceed to also refresh the list of devices connected.
 
-``` C#
+```csharp
 private void closeDevice_Click(object sender, RoutedEventArgs e)
 {
     try

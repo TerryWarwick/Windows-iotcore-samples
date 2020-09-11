@@ -1,11 +1,11 @@
 ---
-topic: sample
+page_type: sample
 urlFragment: ultrasonic-hcsr04
 languages:
   - csharp
 products:
   - windows
-description: This sample demonstrates using the HC-SR04 ultrasonic sensor.
+description: This sample demonstrates using the HC-SR04 ultrasonic sensor with Window 10 IoT Core.
 ---
 
 # HC-SR04 Ultrasonic sensor

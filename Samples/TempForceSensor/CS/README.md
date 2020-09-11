@@ -27,12 +27,12 @@ This sample assumes that Raspberry Pi 2 or 3 has already been set up as below be
 
 Below are the pinouts of the MCP3002 and MCP3208 analog-to-digital converters (ADC) used in this sample.
 
-![Electrical Components](../../../Resources/images/TempSensor/MCP3002.png)
-![Electrical Components](../../../Resources/images/TempSensor/MCP3208.png)
+![Electrical Components](../../../Resources/images/TempSensor/MCP3002.PNG)
+![Electrical Components](../../../Resources/images/TempSensor/MCP3208.PNG)
 
 * Raspberry Pi 2 and 3
 
-  <img src="../../../Resources/images/PinMappings/RP2_Pinout.png" height="400">
+ ![Raspberry Pi 2 Pinout](../../../Resources/images/PinMappings/RP2_Pinout.png)
 
 ## Parts Connection
 
@@ -43,8 +43,8 @@ and connect the other Leg to `CH0` on MCP3002
 
 Detailed connection:
 
-![Overall Schematics](../../../Resources/images/TempSensor/temp_mcp3002.png);
-![Overall Schematics](../../../Resources/images/TempSensor/force_mcp3002.png);
+![Overall Schematics](../../../Resources/images/TempSensor/temp_mcp3002.PNG);
+![Overall Schematics](../../../Resources/images/TempSensor/force_mcp3002.PNG);
 
 With each model of Raspberry Pi 2 or 3, the pin layout might be a little different. But the pin connection with MCP3002 should be as below:
 
@@ -60,7 +60,7 @@ With each model of Raspberry Pi 2 or 3, the pin layout might be a little differe
 
 Detailed connection:
 
-![Overall Schematics](../../../Resources/images/TempSensor/OverallCon_mcp3208.PNG )
+![Overall Schematics](../../../Resources/images/TempSensor/OverallCon_mcp3208.PNG)
 
 With each model of Raspberry Pi 2 or 3, the pin layout might be a little different.
 But the pin connection with MCP3208 should be as below:
@@ -75,14 +75,12 @@ But the pin connection with MCP3208 should be as below:
 
 ## Look at the code
 
-You can find the source code for this sample by downloading a zip of all of our samples [here](https://github.com/Microsoft/Windows-iotcore-samples/archive/master.zip) and navigating to the `samples-develop\TempSensor`.  
-
 Let's go through the code. We use a timer in the sample, and each time the 'Tick' event is called,
 we read the sensor data through ADC, and the value will be displayed on the screen.
 
 * Timer Code
 Setup timer in C#:
-``` C#
+```csharp
 public MainPage()
 {
 	// ...
@@ -101,7 +99,7 @@ private void Timer_Tick(object sender, object e)
 ```
 
 * Initialize SPI pin
-``` C#
+```csharp
 private async void InitSPI()
 {
     try
@@ -125,7 +123,7 @@ private async void InitSPI()
 
 * read the sensor data through SPI communication
 
-``` C#
+```csharp
 
 /*Raspberry Pi 2 or 3  Parameters*/
 private const string SPI_CONTROLLER_NAME = "SPI0";  /* For Raspberry Pi 2 or 3, use SPI0                             */
@@ -157,7 +155,7 @@ public void DisplayTextBoxContents()
 
 * Convert sensor bit data to a number
 
-``` C#
+```csharp
 /* This is the conversion for MCP3208 which is a 12 bits output; Uncomment this if you are using MCP3208 */
 // public int convertToInt(byte[] data)
 // {
@@ -187,4 +185,4 @@ Press `F5`
 If you are using Temp sensor, you can try to hold the sensor or apply some heat on it to see how the output change. If you are using Force sensor, you can hold it hard or gentle to see
 how the output change on the screen. You can also switch the sensor to a light sensor to play around with it.
 
-<img src="../../../Resources/images/TempSensor/Deploy.png" height="400">
+[Deploy temperature sensor](../../../Resources/images/TempSensor/Deploy.PNG)

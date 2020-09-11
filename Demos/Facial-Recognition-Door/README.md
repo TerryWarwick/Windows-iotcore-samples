@@ -1,11 +1,11 @@
 ---
-topic: sample
+page_type: sample
 urlFragment: facial-recognition-door
 languages:
   - csharp
 products:
   - windows
-description: Building a facial recognition door with Windows 10 IoT Core.
+description: Building a facial recognition door.
 ---
 
 # Windows IoT Facial Recognition Door
@@ -18,7 +18,4 @@ With the introduction of Microsoft's Project Oxford, facial recognition applicat
 
 Navigate to the root folder [here](https://github.com/Microsoft/Windows-iotcore-samples) and either download the samples as a zip file or clone them using git.
 
-The step-by-step instruction for building this project can be found on https://microsoft.hackster.io/en-US/windows-iot/windows-iot-facial-recognition-door-e087ce
-
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+The step-by-step instruction for building this project can be found on Hackster, [here](https://microsoft.hackster.io/en-US/windows-iot/windows-iot-facial-recognition-door-e087ce).

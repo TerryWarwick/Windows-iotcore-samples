@@ -1,7 +1,5 @@
 # RGB LED Sample
 
-You can find the source code for this sample by downloading a zip of all of our samples [here](https://github.com/Microsoft/Windows-iotcore-samples/archive/master.zip).
-
 In this sample, we will connect a Tri-color LED to Raspberry Pi 2 or 3. The LED will blink changing colors from Red, Blue, and Green.
 
 This is a headed sample, so please ensure that your device is in headed
@@ -14,11 +12,11 @@ Also, be aware that the GPIO APIs are only available on Windows IoT Core, so thi
 
 You will need the following components :
 
-* a [754-1615-ND Tri-color LED](http://www.digikey.com/product-detail/en/WP154A4SUREQBFZGC/754-1615-ND/3084119){:target="_blank"}
+* a [754-1615-ND Tri-color LED](http://www.digikey.com/product-detail/en/WP154A4SUREQBFZGC/754-1615-ND/3084119)
 
-* a [330 &#x2126; resistor](http://www.digikey.com/product-detail/en/CFR-25JB-52-330R/330QBK-ND/1636){:target="_blank"}
+* a [330 &#x2126; resistor](http://www.digikey.com/product-detail/en/CFR-25JB-52-330R/330QBK-ND/1636)
 
-* 2x [100 &#x2126; resistors](http://www.digikey.com/product-detail/en/CFR-25JB-52-100R/100QBK-ND/246){:target="_blank"}
+* 2x [100 &#x2126; resistors](http://www.digikey.com/product-detail/en/CFR-25JB-52-100R/100QBK-ND/246)
 
 * a breadboard and several male-to-female and male-to-male connector wires
 
@@ -36,7 +34,7 @@ Here is the schematic:
 
 <sub>*Image made with [Fritzing](http://fritzing.org/)*</sub>
 
-The pinout of the Tri-color LED is shown below and can be found in the [datasheet](http://www.kingbrightusa.com/images/catalog/SPEC/WP154A4SUREQBFZGC.pdf){:target="_blank"}.
+The pinout of the Tri-color LED is shown below and can be found in the [datasheet](http://www.kingbrightusa.com/images/catalog/SPEC/WP154A4SUREQBFZGC.pdf)
 
 ![Tri-color LED Pinout](../../../Resources/images/RGBLED/RGBLED_Pinout.png)
 
@@ -76,7 +74,7 @@ First, we get the default GPIO controller and check that it's not null.
 `GpioController.GetDefault()` will return null on platforms that do not contain
 a GPIO controller.
 
-``` C#
+```csharp
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var gpio = GpioController.GetDefault();
@@ -97,7 +95,7 @@ located next to each other physically on the header. If we're not running on
 Raspberry Pi, we take the first 3 available pins. There is also logic to skip
 pins connected to onboard functions on known hardware platforms.
 
-``` C#
+```csharp
             var deviceModel = GetDeviceModel();
             if (deviceModel == DeviceModel.RaspberryPi2)
             {
@@ -153,7 +151,7 @@ Next, we initialize the pins as outputs driven HIGH, which causes the LED
 to be OFF. We also display which pin numbers are in use. If you're
 not using Raspberry Pi, hook up the RGB LED to the pins shown on the display.
 
-``` C#
+```csharp
             redpin.Write(GpioPinValue.High);
             redpin.SetDriveMode(GpioPinDriveMode.Output);
             greenpin.Write(GpioPinValue.High);
@@ -174,7 +172,7 @@ on the timer callback. If we did not need to update the UI, it would be better
 to use a `System.Threading.Timer` which runs on a separate thread. The less we
 can do on the UI thread, the more responsive the UI will be.
 
-``` C#
+```csharp
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
@@ -184,7 +182,7 @@ can do on the UI thread, the more responsive the UI will be.
 
 In the timer callback, we light up the currently active LED and update the UI.
 
-``` C#
+```csharp
         private void FlipLED()
         {
             Debug.Assert(redpin != null && bluepin != null && greenpin != null);

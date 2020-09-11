@@ -4,12 +4,6 @@ Initialize a video capture device, record video to a file, preview video feed, a
 
 This is a headed sample.  To better understand what headed mode is and how to configure your device to be headed, follow the instructions [here](https://docs.microsoft.com/en-us/windows/iot-core/learn-about-hardware/headlessmode).
 
-### Load the project in Visual Studio
-
-You can find the source code for this sample by downloading a zip of all of our samples [here](https://github.com/Microsoft/Windows-iotcore-samples/archive/master.zip). Make a copy of the folder on your disk and open the project from Visual Studio.
-
-This is a Universal Windows application
-
 ### Connecting your Video Capture device
 
 You'll need:
@@ -79,7 +73,7 @@ When the MainPage is being initialized, sample enumerates all available Video Ca
 Then it initalizes **MediaCapture** object that can be configured to capture video and/or audio only. In the sample, we use AudioAndVideo capture mode.
 
 
-``` C#
+```csharp
 private async void EnumerateCameras()
 {
     var devices = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(Windows.Devices.Enumeration.DeviceClass.VideoCapture);
@@ -129,7 +123,7 @@ private async void InitMediaCapture()
 
 Once MediaCapture object has been initialized, clicking on `Start Capturing` begins media capture to a file in Videos Library folder for DefaultAccount. Sample also enables preview that is wired to a **CaptureElement** XAML element.
 
-``` C#
+```csharp
 private async Task StartMediaCaptureSession()
 {
     await StopMediaCaptureSession();
@@ -147,7 +141,7 @@ private async Task StartMediaCaptureSession()
 
 To end capturing and preview, clicking on the `End Capture` button stops preview and stops recording to a file. It may take a few seconds to flush all data to the video file before it can be played back.
 
-``` C#
+```csharp
 private async Task StopMediaCaptureSession()
 {
     if (isRecording)
@@ -163,7 +157,7 @@ private async Task StopMediaCaptureSession()
 
 After a file has been recorded, it can be played back by pressing `Play Captured VIdeo` button. This sets up a stream from the file to **MediaElement** XAML control.
 
-``` C#
+```csharp
 private async void playVideo(object sender, RoutedEventArgs e)
 {
     Windows.Storage.StorageFile storageFile = await Windows.Storage.KnownFolders.VideosLibrary.GetFileAsync(fileName);
